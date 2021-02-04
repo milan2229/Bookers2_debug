@@ -3,6 +3,9 @@ class Book < ApplicationRecord
 	belongs_to :user
 	has_many :favorites, dependent: :destroy
 	has_many :book_comments, dependent: :destroy
+	# has_many :follower
+	# has_many :followed
+	
 	
 	
 	def favorited_by?(user)

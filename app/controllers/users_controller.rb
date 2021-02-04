@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @users = User.new
     @books = @user.books
     @book = Book.new
 
@@ -27,6 +28,20 @@ class UsersController < ApplicationController
     end
   end
 
+
+def follower
+  @user = User.find(params[:user_id])
+  @users = @user.followed
+  # @users = User.all
+  # @users = User.find(params[:id])
+end
+
+def followed
+  # @user = User.new
+  @user = User.find(params[:user_id])
+  @users = @user.follower
+  # @users = User.all
+end
 
 
   private
