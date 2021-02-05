@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searchs/search'
   devise_for :users
   root 'homes#top'
   get 'home/about' => 'homes#about'
@@ -21,6 +22,6 @@ delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
      resources :book_comments, only: [:create, :destroy]
    end
 
-
+get 'search' => 'searchs#search'
 
 end
