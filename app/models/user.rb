@@ -43,6 +43,19 @@ class User < ApplicationRecord
     end
   end
 
+  #住所
+  # include含める
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+  # 都道府県コードから都道府県名に自動で変換する。
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
+
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: {maximum: 50}
 end

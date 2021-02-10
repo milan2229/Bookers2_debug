@@ -4,18 +4,35 @@
       <h2>Sign up</h2>
       <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        
-        
+
+
         <div class="field">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, class: "name" %>
         </div>
-        
-        
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, class: "email" %>
         </div>
+
+        <div class="field">
+          <%= f.label :postal_code, 'Postal code' %><br />
+          <%= f.text_field :postal_code, autocomplete: 'postal_code', class: 'postal_code' %>
+        </div>
+        <div class="field">
+          <%= f.label :prefecture_name, 'Prefecture code' %><br />
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: '選択してください'}, class: 'prefecture_code' %>
+        </div>
+        <div class="field">
+          <%= f.label :city, 'city' %><br />
+          <%= f.text_field :city, autocomplete: 'city', class: 'city' %>
+        </div>
+        <div class="field">
+          <%= f.label :street, 'street' %><br />
+          <%= f.text_field :street, autocomplete: 'street', class: 'street' %>
+        </div>
+
+
         <div class="field">
           <%= f.label :password %>
           <% if @minimum_password_length %>
